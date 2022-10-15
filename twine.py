@@ -34,5 +34,42 @@ class Twine(str):
         return Twine(res)
 
 
+    def __rshift__(self, value: int):
+        output_buf = list(self)
+        the_len = len(self)
+
+        if value < 0:
+            raise(ValueError("negative shift count"))
+
+        for i, c in enumerate(self):
+            output_buf[(i + value) % the_len] = c
+
+        return Twine("".join(output_buf))
+
+
+    def __lshift__(self, value: int):
+        output_buf = list(self)
+
+        if value < 0:
+            raise(ValueError("negative shift count"))
+
+        for i, c in enumerate(self):
+            output_buf[i - value] = c
+
+        return Twine("".join(output_buf))
+
+
+    def __invert__(self):
+        output_buf = Twine("")
+
+        for i in self:
+            if i.isupper():
+                output_buf += i.lower()
+            else:
+                output_buf += i.upper()
+
+        return output_buf
+
+
     def sqrt(self):
         return Twine(self[:int(math.sqrt(len(self)))])

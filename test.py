@@ -11,6 +11,10 @@ def main():
     print(test_twine ** 2)
     print(test_twine.sqrt())
     print((test_twine ** 2).sqrt())
+    print(test_twine << 2)
+    print(test_twine >> 2)
+    print(test_twine >> 2 << 2)
+    print(~test_twine)
 
 
 if __name__ == "__main__":
